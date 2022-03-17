@@ -53,7 +53,7 @@ public static void printMenu() {
 }
 	//계좌생성 메소드
 	public static void createAccount() {
-//		System.out.println("계좌생성기능.");
+//		System.out.println("계좌생성기능."); 1.계좌생성(계좌번호,예금주,예금액)
 		System.out.print("계좌번호입력>>");
 		String accNo = scn.next();
 		System.out.print("예금주입력>>");
@@ -70,7 +70,7 @@ public static void printMenu() {
 		}
 		System.out.println("계좌가 정상적으로 생성되었습니다.");
 	}
-	// 예금처리 메소드
+	// 예금처리 메소드 2.예금(계좌번호,예금액) > 최고예금금액 10만원. 
 	public static void deposit() { 
 //		System.out.println("예금기능");
 		System.out.print("계좌번호>>");
@@ -101,14 +101,73 @@ public static void printMenu() {
 			System.out.println("계좌번호가 없습니다.");
 		}
 	}
-	// 출금처리 메소드
+	// 출금처리 메소드 3.출금(계좌번호,출금액) > 잔고보다 큰금액은 출금못하도록
 	public static void withdraw() { 
-		System.out.println("출금기능");
+//		System.out.println("출금기능");
+		 System.out.println("계좌번호>>");
+		 String eNo = scn.next();
+		 System.out.println("출금액>>");
+		 int emt = scn.nextInt();
+		 int checkCnt = 0;
+		 for(int i=0;i<banks.length;i++) {
+			 if(banks[i] != null && banks[i].getAccNo().equals(eNo))
+				 checkCnt = 1;
+			 	int currAmt = banks[i].getMoney();
+			 	if(currAmt<emt) {
+			 		checkCnt = 2;
+			 		break;
+			 	}
+			 	banks[i].setMoney(currAmt-emt);
+			 	break;
+			 
+			 
+		 }
+			if(checkCnt ==1) {
+				System.out.println("정상적으로 처리되었습니다");
+				} else if (checkCnt == 2) {
+					System.out.println("출금금액이 모자랍니다.");
+				}
+				else {
+					System.out.println("계좌번호가 없습니다.");
+				}
+		 
+		
+		
+		
+		
+		
 	}
 	// 잔액조회 메소드.
-	public static void findAccountMoney() {
-		System.out.println("조회기능");
+	public static void findAccountMoney() { // 잔액조회
+//		System.out.println("조회기능");
+		
+		System.out.println("계좌를 입력하세요");
+		String accNo = scn.next();
+		int ca = 0;
+
+		for(int i =0; i<banks.length;i++) {
+		if(banks[i] !=null && banks[i].getAccNo().equals(accNo)) {
+			ca = 1;
+
+			
+		} else {
+			ca = 2;
+			System.out.println("잘못입력하였습니다");
+			break;
+		}
+		if(ca == 1) {
+			System.out.println("잔액은"+banks[i].getMoney()+"입니다");
+			break;
+		}
+
+
+		
+
+		}
 	}
+
+		
+
 	
 	// 전체리스트 출력.
 	public static void showList() {

@@ -9,9 +9,9 @@ public class GugudanEx {
 		int result = sum(sum(10, 20), sum(5, 7));
 		int[] newAry= {10,20,30};
 		result = sum(newAry);
-		System.out.println(result);
-		System.out.println(devide(10, 4));
-		
+//		System.out.println(result);
+//		System.out.println(devide(10, 4));
+		printGugudan();
 		
 	} // end of main()
 	public static int sum (int[] ary) {
@@ -61,9 +61,10 @@ public class GugudanEx {
 		for (int j = 1; j <= 9; j++) {
 //			System.out.println("["+j+"단]");
 			
-			for (int i = 1; i <= 9; i++) {
+			for (int i = 2; i <= 9; i++) {
 
-				System.out.printf("%2d*%2d=%2d", i , j ,(i * j));
+				System.out.print(i+"*"+j+"=" +(i * j)+"");
+				System.out.print("");
 
 			}
 
