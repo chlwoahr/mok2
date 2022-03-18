@@ -2,10 +2,8 @@ package com.edu;
 
 import java.util.Scanner;
 
-import javax.swing.text.html.parser.Entity;
-
 // BankApp(main method), Account(계좌번호,예금주,잔액) 
-public class BankApp {
+public class BankAppa {
 
 	static Account[] banks = new Account[100];
 	static Scanner scn = new Scanner(System.in);
@@ -30,8 +28,6 @@ public class BankApp {
 			} else if (menu == 4) {
 				findAccountMoney();
 			} else if (menu == 5) {
-				transferAmount();
-			} else if (menu == 6) {
 				System.out.println("프로그램을 종료합니다.");
 				break;
 			} else if (menu == 9) {
@@ -48,8 +44,7 @@ public class BankApp {
 				+ "     2.예금(번호,예금액) -> 최고예금액 100,000원.\r\n" //
 				+ "     3.출금(번호,출금액) -> 잔액보다 큰 금액 출금 못하도록.\r\n" //
 				+ "     4.잔액조회(번호)\r\n" //
-				+ "     5.송금(송금계좌번호, 금액, 입금계좌)\r\n" // transferAmount()
-				+ "     6.종료.\r\n" //
+				+ "     5.종료.\r\n" //
 				+ "=====================================================\r\n"//
 				+ "선택> ";
 		System.out.print(menu);
@@ -57,31 +52,26 @@ public class BankApp {
 
 	// 계좌생성 메소드.
 	public static void createAccount() {
-		System.out.println("계좌생성기능.");
-
-		String accNo;
-		while (true) {
-			System.out.print("계좌번호입력>> ");
-			accNo = scn.next();
-			// 계좌번호 있는지 체크.
-			if (searchAccountNo(accNo) != null) {
-				System.out.println("이미 있는 계좌번호입니다.");
+//		System.out.println("계좌를 생성해주세요");
+		
+		 String ano;
+		while(true) {
+			System.out.println("계좌입력");
+			ano = scn.next();
+			if(searchAccountNo(ano) != null) {
+				System.out.println("중복된계좌");
 				continue;
 			}
-			// 사용가능한 계좌번호가 맞으면 while 반복문을 벗어난다.
 			break;
 		}
-
-		System.out.print("예금주입력>> ");
-		String accName = scn.next();
-		System.out.print("예금액입력>> ");
-		int accMoney = scn.nextInt();
-
-		Account accnt = new Account(accNo, accName, accMoney);
-
+		System.out.println("예금주입력>>");
+		String name = scn.next();
+		System.out.println("예금액입력>>");
+		int mon = scn.nextInt();
+		Account acn = new Account(ano,name,mon);
 		for (int i = 0; i < banks.length; i++) {
 			if (banks[i] == null) {
-				banks[i] = accnt;
+				banks[i] = acn;
 				break;
 			}
 		}
@@ -91,37 +81,32 @@ public class BankApp {
 
 	// 예금 메소드.
 	public static void deposit() {
-		System.out.println("예금기능.");
-
-		System.out.print("계좌번호>> ");
-		String ano = scn.next();
-		System.out.print("예금액 입력>> ");
+		System.out.println("입금계좌>");
+		String aa = scn.next();
+		System.out.println("입금금액");
 		int amt = scn.nextInt();
-		int checkCnt = 0; // 조회가 됐는지 체크 여부 변수.
-
-		Account findAccount = searchAccountNo(ano);
-		if (findAccount != null) {
-			checkCnt = 1; // 찾는 조건에 맞는 계좌존재.
-			int currAmt = findAccount.getMoney();
-
-			// 예금액이 10만원을 초과하지 못하도록..
-			if (currAmt + amt > 100000) {
-				checkCnt = 2;
+		int check = 0;
+		
+		if(searchAccountNo(aa) != null) {
+			check = 1;
+			if(searchAccountNo(aa).getMoney()+amt > 100000) {
+				check = 2;
+				
 			} else {
-				findAccount.setMoney(currAmt + amt); // 잔액 + 입금액.
-			}
+				searchAccountNo(aa).setMoney(searchAccountNo(aa).getMoney()+amt);
+			}		
+			
 		}
-
-		if (checkCnt == 1) {
-			System.out.println("정삭적으로 처리되었습니다.");
-		} else if (checkCnt == 2) {
-			System.out.println("한도액을 초과했습니다.");
-		} else {
-			System.out.println("계좌번호가 없습니다.");
+		if(check == 1) {
+			System.out.println("정상처리");
+		} else if(check ==2) {
+			System.out.println("10만원 초과");
+		} else{
+			System.out.println("계좌번호없음");
 		}
-
+		
+		
 	}
-
 	// 출금 메소드.
 	public static void withdraw() {
 		System.out.println("출금기능.");
@@ -158,55 +143,13 @@ public class BankApp {
 		System.out.println("조회기능.");
 		System.out.print("계좌번호>> ");
 		String ano = scn.next();
-		Account findAccount = searchAccountNo(ano);
-		if (findAccount == null) {
+		
+		if (searchAccountNo(ano) == null) {
 			System.out.println("계좌가 존재하지 않습니다.");
 			return;
 		}
-		System.out.println("잔액: " + findAccount.getMoney());
+		System.out.println("잔액: " + searchAccountNo(ano).getMoney());
 	}
-
-	public static void transferAmount() {
-		System.out.println("입금 계좌번호>");
-		String trb = scn.next();
-		System.out.print("송금 계좌번호>");
-		String tra = scn.next();
-		System.out.println("송금 금액");
-		int tm = scn.nextInt();
-		int cnt = 0;
-		Account findAccount = searchAccountNo(trb);
-		Account exAccount = searchAccountNo(tra);
-		if (findAccount != null) {
-			cnt = 1;
-			int currAmt = findAccount.getMoney();
-			findAccount.setMoney(currAmt - tm);
-			if (currAmt < tm) {
-				cnt = 2;
-				
-
-			}
-			if (exAccount.getMoney() < 0) {
-				cnt = 3;
-
-			}
-
-		}
-		if (exAccount != null) {
-			int currAmt = exAccount.getMoney();
-			exAccount.setMoney(currAmt + tm);
-
-		}
-		if (cnt == 1) {
-			System.out.println("송금되었습니다");
-		} else if (cnt == 2) {
-			System.out.println("잔액이부족합니다.");
-			
-		} else if (cnt == 3)
-			System.out.println("잘못된계좌입니다.");
-
-	}
-
-	
 
 	// 전체리스트 출력.
 	public static void showList() {
@@ -229,3 +172,4 @@ public class BankApp {
 	}
 
 }
+

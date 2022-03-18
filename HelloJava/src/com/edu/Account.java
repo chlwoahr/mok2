@@ -12,6 +12,17 @@ public class Account {
 		this.accName = accName;
 		this.money = money;
 	}
+	public static String bankName; //static은 클래스가 
+	static {
+		bankName = "한일은행";
+	}
+	public static void showBankName() {
+		System.out.println("한일은행입니다.");
+	}
+	public Account() {
+		
+	}
+	// 생성자,메소드 여러개 만드는것 : 오버로딩
 	//method.
 	public String getAccNo() {
 		return accNo;
