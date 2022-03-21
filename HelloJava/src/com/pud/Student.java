@@ -1,6 +1,6 @@
 package com.pud;
 
-import javax.naming.spi.DirStateFactory.Result;
+
 
 //private 클래스간 사용불가 default 클래스 사용가능 패키지간 사용불가 , public 다른패키지 접근가능
 public class Student {
