@@ -4,9 +4,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibraryExe {
-
-	public static void main(String[] args) {
-		// 책제목, 저자, 가격 > 저장
+	private static LibraryExe singleton = new LibraryExe();
+		private LibraryExe() {
+}
+		public static LibraryExe getInstance() {
+			return singleton;
+		}
+		
+		
+//	public static void main(String[] args) {
+	public void run() {
+	// 책제목, 저자, 가격 > 저장
 		// 리스트 보여주기.
 		Scanner scn = new Scanner(System.in);
 		Book[] library = new Book[5];
@@ -66,7 +74,7 @@ public class LibraryExe {
 		}
 	}
 
-	public static void showMessage(String str) {
+	public void showMessage(String str) {
 		for (int i = 0; i < str.length(); i++) {
 			System.out.print(str.charAt(i)); // charAt 문자를하나씩갖고오는기능
 			try {
