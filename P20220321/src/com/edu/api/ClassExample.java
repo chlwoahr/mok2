@@ -18,9 +18,9 @@ public class ClassExample {
 		System.out.println(cls.getSimpleName());
 		System.out.println(cls.getMethods());
 		Method[] methods = cls.getMethods();
-		for(Method met : methods) {
-			System.out.println(met.getName());
-		}
+//		for(Method met : methods) {
+//			System.out.println(met.getName());
+//		}
 		
 		
 		cls = Member.class;

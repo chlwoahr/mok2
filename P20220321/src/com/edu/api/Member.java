@@ -2,11 +2,11 @@ package com.edu.api;
 
 public class Member {
 	private String id;
-	private String name;
+//	private String name;
 	
-	public Member(String id, String name) {
+	public Member(String id) {
 		this.id = id;
-		this.name = name;
+//		this.name = name;
 	}
 	
 	
@@ -16,27 +16,26 @@ public class Member {
 	}
 
 
-	@Override
-	public boolean equals(Object obj) {
-		Member member = null;
-		if(obj instanceof Member) {
-			member = (Member) obj;
-			if(this.id == member.id && this.name == member.name) {
-				return true;
-			}
-		}return false;
+//	@Override
+//	public boolean equals(Object obj) {
+//		
+//		if(obj instanceof Member) {
+//			Member member = (Member) obj;
+//			if(id.equals(member.id)) {
+//				return true;
+//			}return false;
+//		}
 		
 			
 		
 		
-		
-		
-//		if(obj instanceof Member) {
-//			Member member = (Member) obj;
-//			if(id.equals(member.id)&&name.equals(member.name)) {
-//				return true;
-//			}
-//		}
-//		return false;
+		//기본 equals member == obj로 주소값만 비교하기떄문에
+	//오버라이딩하여 재정의 obj타입이 맴버와 동일하다면 형변환하여 obj에 id값 비교 
+		@Override
+		public boolean equals(Object obj) {
+			if(obj instanceof Member) {
+			Member member = (Member) obj;
+		return	this.id == member.id;
+			} return false;
 	}
 }
