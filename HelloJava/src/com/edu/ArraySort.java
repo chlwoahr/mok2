@@ -15,6 +15,7 @@ public class ArraySort {
 					temp = ary[i];
 					ary[i] = ary[i + 1];
 					ary[i + 1] = temp;
+					System.out.println(ary[i]);
 				}
 			}
 
@@ -27,7 +28,7 @@ public class ArraySort {
 		int[] intAry2 = {20 , 70, 50, 1};
 		sorting(intAry);
 		
-		int loopCnt = intAry.length - 1; // 마지막값이 제일 처음위치로 이동하려면 배열크기-1
+//		int loopCnt = intAry.length - 1; // 마지막값이 제일 처음위치로 이동하려면 배열크기-1
 //		for (int cnt = 0; cnt < loopCnt; cnt++) {
 //			int temp = intAry[0]; // 첫번째 값으로 temp값을 지정.
 //

@@ -1,6 +1,27 @@
 package com.edu.abstracts;
 
 public class Cat extends Animal {
+	private String jo;
+	
+	
+
+	
+	
+	
+	public String getJo() {
+		String str = jo;
+		return jo;
+	}
+
+
+
+	public void setJo(String jo) {
+		this.jo = jo;
+	}
+
+
+
+
 
 	@Override
 	public void eat() {

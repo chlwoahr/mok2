@@ -14,9 +14,9 @@ public class DriverExample {
 		Taxi taxi = new Taxi();
 		Bus bus = new Bus();
 
-		System.out.println("Vehicle의 최고속력:" + vehicle.getMaxSpeed());
-		System.out.println("Taxi의 최고속력:" + taxi.getMaxSpeed());
-		System.out.println("Bus의 최고속력:" + bus.getMaxSpeed());
+//		System.out.println("Vehicle의 최고속력:" + vehicle.getMaxSpeed());
+//		System.out.println("Taxi의 최고속력:" + taxi.getMaxSpeed());
+//		System.out.println("Bus의 최고속력:" + bus.getMaxSpeed());
 
 		Vehicle[] vehicles = new Vehicle[3];
 		vehicles[0] = vehicle;

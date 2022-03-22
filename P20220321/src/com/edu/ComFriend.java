@@ -6,9 +6,9 @@ public class ComFriend extends Friend {
 	private String job;
 	
 	// public ComFriend(){} // super();
-	public ComFriend() {
-		
-	}
+//	public ComFriend() {
+//		
+//	}
 	
 	public ComFriend(String name, int age, double height, double weight, String phone,String company, String job) {
 		super(name, age, height, weight, phone);
