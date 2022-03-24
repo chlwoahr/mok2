@@ -23,5 +23,17 @@ public class StudentServiceImpl implements StudentService {
 	public void modifyStudent(Student student) {
 		
 	}
+
+	@Override
+	public void removest(int a) {
+		
+		
+	}
+
+	@Override
+	public List<Student> searchStudents(String name) {
+		
+		return null;
+	}
 	
 }

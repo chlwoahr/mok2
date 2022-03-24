@@ -20,7 +20,7 @@ public class SetExample {
 //		System.out.println(set.size());
 
 		Iterator<String> iter = set.iterator(); // 반복
-		while (iter.hasNext()) {
+		while (iter.hasNext()) { //가져올요소있는지 확인
 			String result = iter.next();
 			System.out.println(result);
 		}
