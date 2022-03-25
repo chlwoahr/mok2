@@ -12,6 +12,7 @@ public interface StudentService {//기능 정의
 	public void modifyStudent(Student student);//한건수정
 	public void removest(int a);//한건삭제
 	public List<Student> searchStudents(String name); //이름조회
+	public void saveTofile();
 	
 	
 	

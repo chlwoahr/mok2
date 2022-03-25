@@ -61,29 +61,34 @@ public class StudentApp {
 				}
 
 			}
-			
 
 		}
 
 		@Override
 		public List<Student> searchStudents(String name) {
 			List<Student> searchList = new ArrayList<Student>();
-			//찾았다고 종료X 
-			for(int i=0;i<list.size();i++) {
-				//같은이름이 있는지 찾아보고 있으면 searchList.add()
+			// 찾았다고 종료X
+			for (int i = 0; i < list.size(); i++) {
+				// 같은이름이 있는지 찾아보고 있으면 searchList.add()
 				if (list.get(i).getNa().equals(name)) {
 					searchList.add(list.get(i));
-					
+
 				}
-			
+
 			}
 			return searchList;
+		}
+
+		@Override
+		public void saveTofile() {
+			System.exit(0);
+
 		}
 
 	} // end of studentserviceimpl
 
 	public void execute() {
-		StudentService service = new StudentServiceImpl();
+		StudentService service = new StudentServiceFile();
 		// 인터페이스를 변수로 선언하고 구현하는클래스 인스턴스 생성
 
 		// 메뉴: 1.추가 2.리스트 3.한건조회 4.수정5.삭제6.이름으로 조회 9.종료
@@ -130,17 +135,17 @@ public class StudentApp {
 				Student s1 = new Student(stuNo, null, engScore, korScore);
 				service.modifyStudent(s1);
 				System.out.println("처리가 완료되었습니다");
-			} else if(menu ==5) {
+			} else if (menu == 5) {
 				System.out.println("삭제할 학생번호 입력>>");
 				int stuNo = scn.nextInt();
-				
-				if(service.getStudent(stuNo) == null) {
+
+				if (service.getStudent(stuNo) == null) {
 					System.out.println("삭제할 번호 없음");
-				}else  {
+				} else {
 					service.removest(stuNo);
 					System.out.println("삭제완료");
 				}
-			} else if(menu ==6) {
+			} else if (menu == 6) {
 				System.out.println("검색할 이름 입력");
 				String Stuna = scn.next();
 				List<Student> list = service.searchStudents(Stuna);
@@ -151,12 +156,13 @@ public class StudentApp {
 						System.out.println(s.toString());
 					}
 				}
-								
+
 			}
-			
-			
-				else if (menu == 9) {
+
+			else if (menu == 9) {
+
 				System.out.println("프로그램을 종료합니다");
+				service.saveTofile();
 				break;
 			}
 		} // while end
