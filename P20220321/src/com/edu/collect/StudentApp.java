@@ -86,7 +86,7 @@ public class StudentApp {
 		}
 
 	} // end of studentserviceimpl
-
+// 메인기능을 담당하는 excute();
 	public void execute() {
 		StudentService service = new StudentServiceFile();
 		// 인터페이스를 변수로 선언하고 구현하는클래스 인스턴스 생성
