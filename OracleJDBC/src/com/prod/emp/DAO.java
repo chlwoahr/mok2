@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class DAO {
 	
 	//DriverManager
-	 Connection conn;
+	 Connection conn; //sql 연결
 	 Statement stmt; // 쿼리실행
 	 ResultSet rs;
 	 PreparedStatement psmt; // 쿼리실행

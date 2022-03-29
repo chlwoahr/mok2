@@ -127,7 +127,7 @@ public class MemberApp {
 				break;
 			}
 
-		}
+		}System.out.println("end");
 
 	}
 }
