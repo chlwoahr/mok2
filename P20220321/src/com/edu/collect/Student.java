@@ -56,7 +56,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "학생정보 [학번:" + nu + ", 이름:" + na + ", 국어점수:" + k + ", 영어점수:" + e + "]";
+		return "학생정보 [학번:" + nu + ", 이름:" + na + ", 영어점수:" + e + ", 국어점수:" + k + "]";
 	}
 
 	

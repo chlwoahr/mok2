@@ -88,7 +88,10 @@ public class StudentApp {
 	} // end of studentserviceimpl
 // 메인기능을 담당하는 excute();
 	public void execute() {
-		StudentService service = new StudentServiceFile();
+		StudentService service = null;
+				service = new StudentServiceOracle();
+//				new StudentServiceFile();
+					
 		// 인터페이스를 변수로 선언하고 구현하는클래스 인스턴스 생성
 
 		// 메뉴: 1.추가 2.리스트 3.한건조회 4.수정5.삭제6.이름으로 조회 9.종료
