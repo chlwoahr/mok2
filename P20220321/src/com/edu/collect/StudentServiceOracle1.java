@@ -4,21 +4,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class StudentServiceOracle extends DAO implements StudentService {
+public class StudentServiceOracle1 extends DAO implements StudentService {
 
 	@Override
 	public void insertStudent(Student student) {
 		conn = getConnect();
-		String sql = "insert into student_info (student_no, student_name, eng_score, kor_score) " 
-		+ "values(?,?,?,?)";
+		String sql = "insert into student_info(student_no,student_name,eng_score,kor_score) " + "values(?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, student.getNu());
 			psmt.setString(2, student.getNa());
-			psmt.setInt(3, student.getK());
-			psmt.setInt(4, student.getE());
+			psmt.setInt(3, student.getE());
+			psmt.setInt(4, student.getK());
 			psmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -26,53 +23,47 @@ public class StudentServiceOracle extends DAO implements StudentService {
 		} finally {
 			disconnect();
 		}
+
 	}
 
 	@Override
 	public Student getStudent(int sno) {
 		conn = getConnect();
 		Student s = new Student();
-		String sql = "select * "
-				+ "from student_info "
-				+ "where student_no = ? ";
+		String sql = "select * from student_info where student_no = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, sno);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
-				
+			if (rs.next()) {
+
 				s.setNu(rs.getInt("student_no"));
 				s.setNa(rs.getString("student_name"));
 				s.setE(rs.getInt("eng_score"));
 				s.setK(rs.getInt("kor_score"));
-				
 			}
-
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			disconnect();
 		}
+
 		return s;
 	}
 
 	@Override
 	public List<Student> studentList() {
 		conn = getConnect();
-		String sql = "select * "
-				+ "from student_info ";
-		List<Student> list = new ArrayList<Student>();// 조회된 결과값을 담기위한 컬렉션
+		List<Student> st = new ArrayList<Student>();
+		String sql = "select *\r\n" + "from student_info\r\n";
 		try {
 			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery(); // 실행건수만큼 반복자
-			while (rs.next()) { // 반복자를 통해 요소를 가지고 올수있는지 체크, 있는만큼 가져옴
-				Student student = new Student();
-				student.setNu(rs.getInt("student_no"));
-				student.setNa(rs.getString("student_name"));
-				student.setE(rs.getInt("eng_score"));  //천천히 하나씩 하기!! set 메소드 확인
-				student.setK(rs.getInt("kor_score"));
-				list.add(student);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				Student s = new Student();
+				s.setNu(rs.getInt("student_no"));
+				s.setNa(rs.getString("student_name"));
+				s.setE(rs.getInt("eng_score"));
+				s.setK(rs.getInt("kor_score"));
+				st.add(s);
 
 			}
 		} catch (SQLException e) {
@@ -80,14 +71,15 @@ public class StudentServiceOracle extends DAO implements StudentService {
 		} finally {
 			disconnect();
 		}
-		return list;
+
+		return st;
 	}
 
 	@Override
 	public void modifyStudent(Student student) {
 		conn = getConnect();
-		String sql = "update student_info set eng_score = ?, kor_score = ? where student_no = ?" ;
-		
+		String sql = "update student_info set eng_score = ?, kor_score = ? where student_no = ?";
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, student.getE());
@@ -96,24 +88,37 @@ public class StudentServiceOracle extends DAO implements StudentService {
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disconnect();
 		}
+
+		// conn = getConnect();
+//		String sql = "update student_info set eng_score = ?, kor_score = ? " + "where student_no = ?  ";
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setInt(1, student.getE());
+//			psmt.setInt(2, student.getK());
+//			psmt.setInt(3, student.getNu());
+//			psmt.executeUpdate();
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+
 	}
 
 	@Override
 	public void removest(int a) {
 		conn = getConnect();
-		String sql = "delete from student_info "
-				+ "where student_no = ? " ;
+		String sql = "DELETE from student_info\r\n" + "where student_no = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, a);
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			disconnect();
 		}
 
 	}
@@ -127,8 +132,7 @@ public class StudentServiceOracle extends DAO implements StudentService {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, name);
 			rs = psmt.executeQuery();
-			
-			while(rs.next()) {
+			while (rs.next()) {
 				Student s1 = new Student();
 				s1.setNu(rs.getInt("student_no"));
 				s1.setNa(rs.getString("student_name"));
@@ -138,9 +142,10 @@ public class StudentServiceOracle extends DAO implements StudentService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			disconnect();
-		} 
+		}
+
 		return s;
 	}
 
