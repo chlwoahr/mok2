@@ -1,23 +1,31 @@
 package jae;
 
-public class Textile {
+public class TexTile {
 	private int texnu;
 	private String texna;
 	private String texco;
 	private int texam;
 	
-	public Textile() {
+	
+	public TexTile() {
 		
 	}
 	
-	public Textile(int texnu, String texna, String texco, int texam) {
+	
+	
+	
+	public TexTile(int texnu, String texna, String texco, int texam) {
 		super();
 		this.texnu = texnu;
 		this.texna = texna;
 		this.texco = texco;
 		this.texam = texam;
 	}
-	//me
+	
+
+
+
+
 	public int getTexnu() {
 		return texnu;
 	}
@@ -42,10 +50,19 @@ public class Textile {
 	public void setTexam(int texam) {
 		this.texam = texam;
 	}
+
+
+
+
 	@Override
 	public String toString() {
-		return "섬유정보 [오더번호=" + texnu + ", 아이템=" + texna + ", 색상=" + texco + ", 수량=" + texam + "]";
+		return "섬유 정보 [오더번호 = " + texnu + ", 이름= " + texna + ", 색상= " + texco + ", 수량= " + texam + "]";
 	}
 	
-
+	
+	
+	
+	
+	
+	
 }

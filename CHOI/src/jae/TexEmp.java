@@ -1,4 +1,4 @@
-package TexTex;
+package jae;
 
 public class TexEmp {
 	private int empnu;
@@ -16,16 +16,6 @@ public class TexEmp {
 	
 	
 	
-
-
-	public TexEmp(String empjo, int emppa) {
-		super();
-		this.empjo = empjo;
-		this.emppa = emppa;
-	}
-
-
-
 
 
 	public TexEmp(int empnu, String empna, String emphi, String empjo, int empsa, String empar, int emppa) {

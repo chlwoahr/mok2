@@ -1,4 +1,4 @@
-package TexTex;
+package jae;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class TexEmpOracle extends DAO implements TexempIf {
 	public List<TexEmp> texemplist() {// 회원리스트
 		conn = getConnect();
 		List<TexEmp> t = new ArrayList<TexEmp>();
-		String sql = "select *\r\n" + "from tex_emp";
+		String sql = "select *\r\n" + "from texemp";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
