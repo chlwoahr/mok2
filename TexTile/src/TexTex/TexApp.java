@@ -43,7 +43,7 @@ public class TexApp {
 					if (a == 1) {
 						System.out.println("관리자 로그인");
 						while (true) {
-							System.out.println("메뉴선택 : 1.상품추가 2.수정 3.한건조회 4.리스트 5.삭제 6.회원정보 9.종료");
+							System.out.println("메뉴선택 : 1.상품추가 2.수정 3.한건조회 4.상품출고 5.리스트 6.상품삭제 7.회원정보 9.종료");
 							int b = scn.nextInt();
 							if (b == 1) {
 								System.out.print("오더번호 입력");
@@ -85,12 +85,29 @@ public class TexApp {
 									System.out.println(t.toString());
 								}
 
-							} else if (b == 4) {
+							}else if(b==4) {
+								int ch = 0;
+
+								System.out.println("출고할 오더번호");
+								ch = scn.nextInt();
+								TexTile ch1 = sert.getTexTile(ch);
+								if (ch1 == null) {
+									System.out.println("오더번호 잘못입력");
+								} else {
+									System.out.println("출고 수량");
+									int q = scn.nextInt();
+									sert.ma(ch1, q);
+								}
+							}
+							
+							
+							
+							else if (b == 5) {
 								List<TexTile> t = sert.textileList();
 								for (TexTile t1 : t) {
 									System.out.println(t1.toString());
 								}
-							} else if (b == 5) {
+							} else if (b == 6) {
 								System.out.print("삭제할 오더번호입력");
 								int o = scn.nextInt();
 								if (sert.getTexTile(o) == null) {
@@ -100,7 +117,7 @@ public class TexApp {
 									System.out.println("삭제완료");
 								}
 
-							} else if (b == 6) {
+							} else if (b == 7) {
 								while (true) {
 									System.out.println("1.직원리스트 2.직원조회 3.급여변경 4.삭제 5.이전");
 									int b1 = scn.nextInt();
@@ -113,10 +130,10 @@ public class TexApp {
 										System.out.println("사원번호 입력");
 										int emp = scn.nextInt();
 										TexEmp t = sere.getTexEmp(emp);
-										if(t == null) {
+										if (t == null) {
 											System.out.println("없는 번호입니다");
-											
-										}else {
+
+										} else {
 											System.out.println(t.toString());
 										}
 
@@ -203,24 +220,22 @@ public class TexApp {
 									System.out.println("삭제완료");
 								}
 
-							}else if (sa==6) {
-								 
+							} else if (sa == 6) {
+
 								int ch = 0;
-								
+
 								System.out.println("출고할 오더번호");
 								ch = scn.nextInt();
 								TexTile ch1 = sert.getTexTile(ch);
-								if(ch1==null) {
+								if (ch1 == null) {
 									System.out.println("오더번호 잘못입력");
-								}else {
+								} else {
 									System.out.println("출고 수량");
 									int q = scn.nextInt();
 									sert.ma(ch1, q);
 								}
-								
-								
-							}
-							else if (sa == 9) {
+
+							} else if (sa == 9) {
 								break;
 							}
 						}
