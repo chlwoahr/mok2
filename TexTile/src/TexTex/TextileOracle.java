@@ -27,10 +27,10 @@ public class TextileOracle extends DAO implements TexIf {
 	}
 
 	@Override
-	public void modifyTexTile(TexTile textile) {
+	public boolean modifyTexTile(TexTile textile) {
 		conn = getConnect();
 		String sql = "update textile\r\n" + "set tex_co = ?,\r\n" + "tex_am = ?\r\n" + "where order_nu = ? ";
-
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, textile.getTexco());
@@ -38,25 +38,29 @@ public class TextileOracle extends DAO implements TexIf {
 			psmt.setInt(3, textile.getTexnu());
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 수정");
-
+			if(r>0) {
+				return true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
+		return false;
 
 	}
 
 	@Override
 	public TexTile getTexTile(int nu) { // 한건조회
 		conn = getConnect();
-		TexTile t = new TexTile();
+		TexTile t = null;
 		String sql = "select *\r\n" + "from textile\r\n" + "where order_nu = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, nu);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
+				t = new TexTile();
 				t.setTexnu(rs.getInt("order_nu"));
 				t.setTexna(rs.getString("tex_na"));
 				t.setTexco(rs.getString("tex_co"));
@@ -112,5 +116,23 @@ public class TextileOracle extends DAO implements TexIf {
 			disconnect();
 		}
 	}
+
+	@Override
+	public void ma(TexTile t,int a) {
+		conn = getConnect();
+		
+		String sql = "update textile\r\n"
+				+ "set tex_am = tex_am-?\r\n"
+				+ "where order_nu = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, a);
+			psmt.setInt(2, t.getTexnu());
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	} 
 
 }

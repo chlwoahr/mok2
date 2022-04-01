@@ -1,5 +1,7 @@
 package TexTex;
 
+
+
 public class TexEmp {
 	private int empnu;
 	private String empna;
@@ -87,7 +89,7 @@ public class TexEmp {
 	}
 	@Override
 	public String toString() {
-		return "사원정보 [사원번호= " + empnu + ", 사원이름= " + empna + ", 입사날짜= " + emphi +"부서= "+empjo+ ", 급여= " + empsa + ", 근무지역= "
+		return "사원정보 [사원번호= " + empnu + ", 사원이름= " + empna + ", 입사날짜= " + emphi +" 부서= "+empjo+ ", 급여= " + empsa + ", 근무지역= "
 				+ empar + ", 비밀번호= " + emppa + "]";
 	}
 	
