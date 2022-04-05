@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 import javax.xml.stream.events.EndDocument;
 
 public class TexApp {
@@ -43,11 +44,12 @@ public class TexApp {
 					if (a == 1) {
 						System.out.println("관리자 로그인");
 						while (true) {
-							System.out.println("메뉴선택 : 1.상품추가 2.수정 3.한건조회 4.상품출고 5.리스트 6.상품삭제 7.회원정보 9.종료");
+							System.out.println("메뉴선택 : 1.상품추가 2.수정 3.한건조회 4.상품출고 5.리스트 6.상품삭제 7.회원정보 9.이전");
 							int b = scn.nextInt();
 							if (b == 1) {
-								System.out.print("오더번호 입력");
+							System.out.print("오더번호 입력");
 								int b1 = scn.nextInt();
+
 								System.out.print("상품이름");
 								String b2 = scn.next();
 								System.out.print("컬러");
@@ -81,7 +83,7 @@ public class TexApp {
 								if (t == null) {
 									System.out.println("오더번호 잘못입력");
 								} else if (t != null) {
-
+									
 									System.out.println(t.toString());
 								}
 
@@ -96,7 +98,13 @@ public class TexApp {
 								} else {
 									System.out.println("출고 수량");
 									int q = scn.nextInt();
-									sert.ma(ch1, q);
+									if(ch1.getTexam()<q) {
+										System.out.println("수량이 부족합니다");
+									}else {
+										System.out.println("출고완료");
+										sert.ma(ch1, q);
+									}
+									
 								}
 							}
 							
@@ -168,7 +176,7 @@ public class TexApp {
 					} else {
 						System.out.println("직원 로그인");
 						while (true) {
-							System.out.println("메뉴선택 : 1.상품추가 2.수정 3.한건조회 4.리스트 5.삭제 6.출고 9.종료");
+							System.out.println("메뉴선택 : 1.상품추가 2.수정 3.한건조회 4.리스트 5.삭제 6.출고 9.이전");
 							int sa = scn.nextInt();
 							if (sa == 1) {
 								System.out.print("오더번호 입력");
@@ -232,7 +240,13 @@ public class TexApp {
 								} else {
 									System.out.println("출고 수량");
 									int q = scn.nextInt();
-									sert.ma(ch1, q);
+									if(ch1.getTexam()<q) {
+										System.out.println("수량이 부족합니다");
+									}else {
+										System.out.println("출고완료");
+										sert.ma(ch1, q);
+									}
+									
 								}
 
 							} else if (sa == 9) {

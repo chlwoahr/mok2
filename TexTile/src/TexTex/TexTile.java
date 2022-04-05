@@ -58,6 +58,11 @@ public class TexTile {
 	public String toString() {
 		return "섬유 정보 [오더번호 = " + texnu + ", 이름= " + texna + ", 색상= " + texco + ", 수량= " + texam + "]";
 	}
+
+
+
+
+
 	
 	
 	
