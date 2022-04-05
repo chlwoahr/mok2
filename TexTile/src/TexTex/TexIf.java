@@ -1,5 +1,6 @@
 package TexTex;
 
+
 import java.util.List;
 
 public interface TexIf {
@@ -15,5 +16,7 @@ public interface TexIf {
 	
 	public void  ma (TexTile t,int a); // 출고
 
-	
+	 
+	    	
+	    
 }

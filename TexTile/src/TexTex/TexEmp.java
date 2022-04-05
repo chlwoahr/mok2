@@ -1,6 +1,7 @@
 package TexTex;
 
-
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class TexEmp {
 	private int empnu;

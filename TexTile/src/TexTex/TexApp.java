@@ -1,5 +1,6 @@
 package TexTex;
 
+import java.nio.channels.NonWritableChannelException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -14,12 +15,17 @@ public class TexApp {
 		TexIf sert = new TextileOracle();
 		TexempIf sere = new TexEmpOracle();
 		Scanner scn = new Scanner(System.in);
-		int a = 0, a1 = 0;
+		int a = 0, a1 = 0, cc = 0;
 
 		while (true) {
-			System.out.println("1.로그인 2.종료");
-			int cc = scn.nextInt();
 
+			try {
+				System.out.println("1.로그인 2.종료");
+				cc = scn.nextInt();
+			} catch (Exception e) {
+				System.out.println("숫자입력");
+				scn.next();
+			}
 			if (cc == 2) {
 				break;
 			} else if (cc == 1) {
@@ -47,7 +53,7 @@ public class TexApp {
 							System.out.println("메뉴선택 : 1.상품추가 2.수정 3.한건조회 4.상품출고 5.리스트 6.상품삭제 7.회원정보 9.이전");
 							int b = scn.nextInt();
 							if (b == 1) {
-							System.out.print("오더번호 입력");
+								System.out.print("오더번호 입력");
 								int b1 = scn.nextInt();
 
 								System.out.print("상품이름");
@@ -83,11 +89,11 @@ public class TexApp {
 								if (t == null) {
 									System.out.println("오더번호 잘못입력");
 								} else if (t != null) {
-									
+
 									System.out.println(t.toString());
 								}
 
-							}else if(b==4) {
+							} else if (b == 4) {
 								int ch = 0;
 
 								System.out.println("출고할 오더번호");
@@ -98,18 +104,16 @@ public class TexApp {
 								} else {
 									System.out.println("출고 수량");
 									int q = scn.nextInt();
-									if(ch1.getTexam()<q) {
+									if (ch1.getTexam() < q) {
 										System.out.println("수량이 부족합니다");
-									}else {
+									} else {
 										System.out.println("출고완료");
 										sert.ma(ch1, q);
 									}
-									
+
 								}
 							}
-							
-							
-							
+
 							else if (b == 5) {
 								List<TexTile> t = sert.textileList();
 								for (TexTile t1 : t) {
@@ -127,14 +131,32 @@ public class TexApp {
 
 							} else if (b == 7) {
 								while (true) {
-									System.out.println("1.직원리스트 2.직원조회 3.급여변경 4.삭제 5.이전");
+									System.out.println("1.직원등록 2.직원리스트 3.직원조회 4.급여변경 5.삭제 6.이전");
 									int b1 = scn.nextInt();
-									if (b1 == 1) {
+									if(b1 == 1) {
+										System.out.print("직원번호");
+										int b3 = scn.nextInt();
+										System.out.print("직원이름");
+										String b4 = scn.next();
+										System.out.println("입사일자");
+										String b5 = scn.next();
+										System.out.println("부서");
+										String b6 = scn.next();
+										System.out.println("급여");
+										int b7 = scn.nextInt();
+										System.out.println("근무지역");
+										String b8 = scn.next();
+										System.out.println("직원 비밀번호");
+										int b9 = scn.nextInt();
+										TexEmp te = new TexEmp(b3, b4, b5, b6, b7, b8, b9);
+										sere.insertTexEmp(te);
+									}
+									else if (b1 == 2) {
 										List<TexEmp> t = sere.texemplist();
 										for (TexEmp t1 : t) {
 											System.out.println(t1.toString());
 										}
-									} else if (b1 == 2) {
+									} else if (b1 == 3) {
 										System.out.println("사원번호 입력");
 										int emp = scn.nextInt();
 										TexEmp t = sere.getTexEmp(emp);
@@ -145,7 +167,7 @@ public class TexApp {
 											System.out.println(t.toString());
 										}
 
-									} else if (b1 == 3) {
+									} else if (b1 == 4) {
 										System.out.println("사원번호 입력");
 										int emp = scn.nextInt();
 
@@ -155,7 +177,7 @@ public class TexApp {
 										sere.modifyTexEmp(t);
 									}
 
-									else if (b1 == 4) {
+									else if (b1 == 5) {
 										System.out.println("삭제할 직원번호 입력");
 										int emp = scn.nextInt();
 										if (sere.getTexEmp(emp) == null) {
@@ -164,7 +186,7 @@ public class TexApp {
 											System.out.println("삭제완료");
 											sere.removeTexEmp(emp);
 										}
-									} else if (b1 == 5) {
+									} else if (b1 == 6) {
 										break;
 									}
 								} // while 종료
@@ -240,13 +262,13 @@ public class TexApp {
 								} else {
 									System.out.println("출고 수량");
 									int q = scn.nextInt();
-									if(ch1.getTexam()<q) {
+									if (ch1.getTexam() < q) {
 										System.out.println("수량이 부족합니다");
-									}else {
+									} else {
 										System.out.println("출고완료");
 										sert.ma(ch1, q);
 									}
-									
+
 								}
 
 							} else if (sa == 9) {

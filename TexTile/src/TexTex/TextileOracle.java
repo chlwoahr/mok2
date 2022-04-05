@@ -2,6 +2,7 @@ package TexTex;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TextileOracle extends DAO implements TexIf {
@@ -80,8 +81,9 @@ public class TextileOracle extends DAO implements TexIf {
 	public List<TexTile> textileList() { // 전체목록
 		conn = getConnect();
 		List<TexTile> t = new ArrayList<TexTile>();
-		String sql = "select * \r\n"
-				+ "from textile ";
+		String sql = "select *\r\n"
+				+ "from textile\r\n"
+				+ "order by order_nu ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();

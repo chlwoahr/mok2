@@ -16,7 +16,9 @@ public interface TexempIf {
 
 	public void removeTexEmp(int a);// 한건삭제
 	
-	public TexEmp log(int a, int b);//로그인 
+	public TexEmp log(int a, int b);//로그인
+	
+	
 
 
 }
