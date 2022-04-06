@@ -68,20 +68,31 @@ public class TexApp {
 							} else if (b == 2) {
 								System.out.print("오더번호 입력");
 								int b1 = scn.nextInt();
-								if (sert.getTexTile(b1) == null) {
-									System.out.println("없는번호입니다.");
-
-								}
 								System.out.print("변경할 컬러");
 								String b2 = scn.next();
 								System.out.print("변경할 수량");
 								int b3 = scn.nextInt();
 								TexTile t = new TexTile(b1, null, b2, b3);
-								Boolean qq = sert.modifyTexTile(t);
-								if (qq) {
-									System.out.println("수정완료");
-								} else
-									System.out.println("수정할 자료없음");
+								TexTile aa = sert.getTexTile(b1);
+								if (aa == null) {
+									System.out.println("오더번호를 잘못입력");
+								} else {
+									sert.modifyTexTile(t);
+								}
+								
+								
+								//								System.out.print("오더번호 입력");
+//								int b1 = scn.nextInt();
+//								if (sert.getTexTile(b1) == null) {
+//									System.out.println("없는번호입니다.");
+//
+//								}
+//								System.out.print("변경할 컬러");
+//								String b2 = scn.next();
+//								System.out.print("변경할 수량");
+//								int b3 = scn.nextInt();
+//								TexTile t = new TexTile(b1, null, b2, b3);
+//								sert.modifyTexTile(t);
 							} else if (b == 3) {
 								System.out.println("조회할 오더번호");
 								int b1 = scn.nextInt();
@@ -133,7 +144,7 @@ public class TexApp {
 								while (true) {
 									System.out.println("1.직원등록 2.직원리스트 3.직원조회 4.급여변경 5.삭제 6.이전");
 									int b1 = scn.nextInt();
-									if(b1 == 1) {
+									if (b1 == 1) {
 										System.out.print("직원번호");
 										int b3 = scn.nextInt();
 										System.out.print("직원이름");
@@ -150,8 +161,7 @@ public class TexApp {
 										int b9 = scn.nextInt();
 										TexEmp te = new TexEmp(b3, b4, b5, b6, b7, b8, b9);
 										sere.insertTexEmp(te);
-									}
-									else if (b1 == 2) {
+									} else if (b1 == 2) {
 										List<TexEmp> t = sere.texemplist();
 										for (TexEmp t1 : t) {
 											System.out.println(t1.toString());

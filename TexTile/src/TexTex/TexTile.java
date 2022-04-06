@@ -7,7 +7,7 @@ public class TexTile {
 	private String texna;
 	private String texco;
 	private int texam;
-	
+	private String date;
 	
 	public TexTile() {
 		
@@ -16,14 +16,26 @@ public class TexTile {
 	
 	
 	
+
+	
+
+
+
+
 	public TexTile(int texnu, String texna, String texco, int texam) {
 		super();
 		this.texnu = texnu;
 		this.texna = texna;
 		this.texco = texco;
 		this.texam = texam;
+		
 	}
-	
+
+
+
+
+
+
 
 
 
@@ -61,9 +73,40 @@ public class TexTile {
 
 
 
+
+
+
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
+
+
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "섬유 정보 [오더번호 = " + texnu + ", 이름= " + texna + ", 색상= " + texco + ", 수량= " + texam + "]";
+		return "[오더번호 = " + texnu + ", 이름= " + texna + ", 색상= " + texco + ", 수량= " + texam + " 최종 수정시간 = "+date+"]\n"	;
 	}
 
 
