@@ -94,6 +94,12 @@ public class TexEmp {
 				+ empar + ", 비밀번호= " + emppa + "]";
 	}
 	
+	public String to2String() {
+		return "사원번호= " + empnu + "\n"+ "사원이름= " + empna +"\n"+ "입사날짜= " + emphi +"\n"+"부서= "+empjo+"\n"+ "급여= " + empsa +"\n"+ "근무지역= "
+				+ empar +"\n"+ "비밀번호= " + emppa + "\n"
+				+"------------------------------------------";
+	}
+	
 	
 	
 	

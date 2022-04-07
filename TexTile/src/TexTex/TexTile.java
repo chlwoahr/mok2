@@ -7,7 +7,7 @@ public class TexTile {
 	private String texna;
 	private String texco;
 	private int texam;
-	
+	private String date;
 	
 	public TexTile() {
 		
@@ -16,14 +16,26 @@ public class TexTile {
 	
 	
 	
+
+	
+
+
+
+
 	public TexTile(int texnu, String texna, String texco, int texam) {
 		super();
 		this.texnu = texnu;
 		this.texna = texna;
 		this.texco = texco;
 		this.texam = texam;
+		
 	}
-	
+
+
+
+
+
+
 
 
 
@@ -61,12 +73,50 @@ public class TexTile {
 
 
 
-	@Override
-	public String toString() {
-		return "섬유 정보 [오더번호 = " + texnu + ", 이름= " + texna + ", 색상= " + texco + ", 수량= " + texam + "]";
+
+
+
+
+
+	public String getDate() {
+		return date;
 	}
 
 
+
+
+
+
+
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "오더번호 = " + texnu + ", 이름= " + texna + ", 색상= " + texco + ", 수량= " + texam + " 최종 수정시간 = "+date+"\n"	;
+	}
+
+	public String to2String() {
+		return "오더번호= " + texnu + "\n"+ "이름= " + texna +"\n"+ "색상= " + texco + "\n"+ "수량= " + texam + "\n"+ "최종 수정시간 = "+date+"\n"
+				+"---------------------------------";
+	}
+	public String to3String() {
+		return "오더번호= " + texnu + "\n"+ "이름= " + texna +"\n"+ "색상= " + texco + "\n"+ "출고 수량= " + texam + "\n"+ "최종 수정시간 = "+date+"\n"
+				+"---------------------------------";
+	}
 
   
 

@@ -10,11 +10,12 @@ public interface TexIf {
 
 	public List<TexTile> textileList();// 전체목록
 
-	public boolean modifyTexTile(TexTile textile);// 한건수정
+	public void modifyTexTile(TexTile textile);// 한건수정
 
 	public void removeTx(int a);// 한건삭제
 	
 	public void  ma (TexTile t,int a); // 출고
+	public List<TexTile> modlist(); // 출고이력
 
 	 
 	    	
