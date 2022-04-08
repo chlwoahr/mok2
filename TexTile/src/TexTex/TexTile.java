@@ -114,8 +114,8 @@ public class TexTile {
 				+"---------------------------------";
 	}
 	public String to3String() {
-		return "오더번호= " + texnu + "\n"+ "이름= " + texna +"\n"+ "색상= " + texco + "\n"+ "출고 수량= " + texam + "\n"+ "최종 수정시간 = "+date+"\n"
-				+"---------------------------------";
+		return "오더번호= " + texnu + "\n"+ "이름= " + texna +"\n"+ "색상= " + texco + "\n"+ "최근 출고 수량= " + texam + "\n" 
+				+"------------------";
 	}
 
   

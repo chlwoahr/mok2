@@ -128,7 +128,7 @@ public class TextileOracle extends DAO implements TexIf {
 		conn = getConnect();
 		
 		String sql = "update textile\r\n"
-				+ "set tex_am = tex_am- ?, tex_md = ?\r\n"
+				+ "set tex_am = tex_am- ?, tex_md = ?, tex_now = (to_char(sysdate,'RR-MM-DD HH24:MI:SS'))\r\n"
 				+ "where order_nu = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
