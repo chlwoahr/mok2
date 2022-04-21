@@ -1,4 +1,4 @@
-// object.js {key: value},{key: value} 키와값을 쌍으로 갖고있는 변수
+// object.js {key: value},{key: value} 키와값을 쌍으로 갖고있는 변수 11
 let member1 = {
   fullName: 'hong',
   age: 20,
