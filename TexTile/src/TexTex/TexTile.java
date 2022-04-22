@@ -80,6 +80,36 @@ public class TexTile {
 
 	public String getDate() {
 		return date;
+<<<<<<< HEAD
+=======
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "[오더번호 = " + texnu + ", 이름= " + texna + ", 색상= " + texco + ", 수량= " + texam + " 최종 수정시간 = "+date+"]\n"	;
+>>>>>>> refs/remotes/origin/master
 	}
 
 

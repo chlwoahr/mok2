@@ -74,6 +74,7 @@ public class TexApp {
 
 								} else {
 
+<<<<<<< HEAD
 									System.out.print("상품이름");
 									String b2 = scn.next();
 
@@ -85,6 +86,36 @@ public class TexApp {
 									sert.insertTexTile(t);
 								}
 
+=======
+							} else if (b == 2) {
+								System.out.print("오더번호 입력");
+								int b1 = scn.nextInt();
+								System.out.print("변경할 컬러");
+								String b2 = scn.next();
+								System.out.print("변경할 수량");
+								int b3 = scn.nextInt();
+								TexTile t = new TexTile(b1, null, b2, b3);
+								TexTile aa = sert.getTexTile(b1);
+								if (aa == null) {
+									System.out.println("오더번호를 잘못입력");
+								} else {
+									sert.modifyTexTile(t);
+								}
+								
+								
+								//								System.out.print("오더번호 입력");
+//								int b1 = scn.nextInt();
+//								if (sert.getTexTile(b1) == null) {
+//									System.out.println("없는번호입니다.");
+//
+//								}
+//								System.out.print("변경할 컬러");
+//								String b2 = scn.next();
+//								System.out.print("변경할 수량");
+//								int b3 = scn.nextInt();
+//								TexTile t = new TexTile(b1, null, b2, b3);
+//								sert.modifyTexTile(t);
+>>>>>>> refs/remotes/origin/master
 							} else if (b == 3) {
 								System.out.print("오더번호 입력");
 								int b1 = scn.nextInt();
@@ -185,10 +216,14 @@ public class TexApp {
 											+"                                   6.이전");
 
 									int b1 = scn.nextInt();
+<<<<<<< HEAD
 									TexEmp e = sere.getTexEmp(b1);
+=======
+>>>>>>> refs/remotes/origin/master
 									if (b1 == 1) {
 										System.out.print("직원번호");
 										int b3 = scn.nextInt();
+<<<<<<< HEAD
 										if (e != null) {
 											System.out.println("중복된 직원번호가 있습니다");
 										} else {
@@ -207,6 +242,22 @@ public class TexApp {
 											TexEmp te = new TexEmp(b3, b4, b5, b6, b7, b8, b9);
 											sere.insertTexEmp(te);
 										}
+=======
+										System.out.print("직원이름");
+										String b4 = scn.next();
+										System.out.println("입사일자");
+										String b5 = scn.next();
+										System.out.println("부서");
+										String b6 = scn.next();
+										System.out.println("급여");
+										int b7 = scn.nextInt();
+										System.out.println("근무지역");
+										String b8 = scn.next();
+										System.out.println("직원 비밀번호");
+										int b9 = scn.nextInt();
+										TexEmp te = new TexEmp(b3, b4, b5, b6, b7, b8, b9);
+										sere.insertTexEmp(te);
+>>>>>>> refs/remotes/origin/master
 									} else if (b1 == 2) {
 										List<TexEmp> t = sere.texemplist();
 										for (TexEmp t1 : t) {

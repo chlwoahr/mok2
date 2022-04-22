@@ -11,7 +11,11 @@ public class TextileOracle extends DAO implements TexIf {
 	public void insertTexTile(TexTile textile) { // 1.추가 2. 수량수정 3.색상수정 3. 리스트 4.오더번호 조회 4. 삭제
 		conn = getConnect();
 
+<<<<<<< HEAD
 		String sql = "insert into textile (order_nu, tex_na, tex_co, tex_am,tex_now) VALUES(?,?,?,?,to_char(sysdate,'RR-MM-DD HH24:MI:SS'))";
+=======
+		String sql = "insert into textile (order_nu, tex_na, tex_co, tex_am,tex_now) VALUES(?,?,?,?,sysdate)";
+>>>>>>> refs/remotes/origin/master
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, textile.getTexnu());
@@ -68,7 +72,11 @@ public class TextileOracle extends DAO implements TexIf {
 				t.setTexna(rs.getString("tex_na"));
 				t.setTexco(rs.getString("tex_co"));
 				t.setTexam(rs.getInt("tex_am"));
+<<<<<<< HEAD
 				t.setDate(rs.getString("tex_now"));
+=======
+				t.setDate(rs.getString("tex_now").substring(0,8));
+>>>>>>> refs/remotes/origin/master
 
 			}
 		} catch (SQLException e) {
