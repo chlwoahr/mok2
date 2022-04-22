@@ -1,7 +1,7 @@
 // object.js {key: value},{key: value} 키와값을 쌍으로 갖고있는 변수 111
 let member1 = {
   fullName: 'hong',
-  age: 20,
+  age: 220,
   score: 80
 }; 
 let member2 = {
