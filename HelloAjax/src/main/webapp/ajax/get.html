@@ -14,32 +14,32 @@
 
 </tbody>
 </table>
-	<script>
-		// 서버의 파일을 요청하고 읽어들이도록
-		let xhtp = new XMLHttpRequest(); // new String()페이지요청
-		xhtp.open("get","../studentList.json"); // 요청할 페이지 지정
-		xhtp.send(); // 호출시작.
-		xhtp.onload = function(){ // on$$ : 이벤트속성 onload : 로딩될때 실행할 함수
-		
-		let data = JSON.parse(xhtp.response); // json 타입을 자바스크립트의 오브젝트타입으로 변경
-		//console.log(data);
-		makeTr(data);
-function makeTr(student){
-	let tr = document.createElement('tr');
-	data.forEach(function (a) {
-    let td = document.createElement('td');
-    td.innerHTML = a;
-    console.log(a);
-	tr.appendChild(td);
-    document.getElementById('list').appendChild(tr);
-  	
-  });
-  return tr;
- };
-	
-};
-	
-		
-	</script>
+   <script>
+      //서버에 파일을 요청하고 읽어들이도록.
+      let xhtp = new XMLHttpRequest(); //new String();
+      xhtp.open("get", "../studentList.json"); // 요청페이지 지정.
+      xhtp.send(); //센드가 있어야 호출시작.
+      xhtp.onload = function(){
+         let data = JSON.parse(xhtp.response); 
+         // [{}, {}, {}]
+         //[{"studentNo": ?, "studentName": "?","engScore": ?,"korScore": ?}, {}]
+         console.log(data);
+         data.forEach(function(aa){
+         document.getElementById('list').appendChild(makeTr(aa))
+            
+         });
+      };
+      
+      function makeTr(student) {
+         let tr = document.createElement('tr')
+         for(let e in student){
+            let td = document.createElement('td')
+            td.innerHTML = student[e];
+            tr.appendChild(td);
+         }; return tr;
+           }
+      
+      
+   </script>
 </body>
 </html>
