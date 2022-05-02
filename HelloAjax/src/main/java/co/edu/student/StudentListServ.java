@@ -31,6 +31,6 @@ public class StudentListServ extends HttpServlet {
 		}
 		jsonString+="]";
 		
-		resp.getWriter().print(jsonString);
+		resp.getWriter().print(jsonString); //화면에 뿌려줌
 	}
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>ajax/fetch.html</title>
+<script src = ajax2.js>
+
+</script>
+</head>
+<body>
+<button id ='allChk'>선택삭제</button>
+<button id ='allChk1'>전체삭제</button>
+<table border='1'>
+<tr><td><input type = 'checkbox'></td><td>hong</td></tr>
+<tr><td><input type = 'checkbox'></td><td>kkkk</td></tr>
+<tr><td><input type = 'checkbox'></td><td>qqqq</td></tr>
+</table>
+<script>
+
+// Ajax => XMLHttpRequest: => fetch();
+ let xhtp = new XMLHttpRequest();
+ xhtp.open('get','../studentList.json');
+ xhtp.send();
+ xhtp.onload = function(){
+ console.log('xmlhttprequest');
+ console.log(xhtp.responseText);
+ }
+ 
+ fetch('../studentList.json')
+		 .then(function(result){ // 정상적으로 실행할 함수
+ 		 let val =  result.json(); // pending
+		return val;
+ 		}) 
+ 		.then(function(result){ // val값
+ 		console.log(result);
+ 		})
+ 		.catch(function(error){ // 에러가 났을경우 실행할 함수
+ 		console.log(error);
+ 
+ 		});
+
+
+let all = document.getElementById('allChk');
+let all1 = document.getElementById('allChk1')
+all1.addEventListener('click',CallBack1);
+all.addEventListener('click',CallBack);
+function CallBack(){
+	let alltr = document.querySelectorAll('tr')
+	console.log(alltr);
+	alltr.forEach(function(tr){
+	if(tr.firstElementChild.firstElementChild.checked == true)
+	tr.remove();
+	})
+};
+function CallBack1(){
+	let alltr = document.querySelectorAll('tr')
+	console.log(alltr);
+	alltr.forEach(function(tr){
+	tr.remove();
+	})
+};
+
+//let allTr = ''; // table하위에있는 tr 다 가져옴
+//	all.forEach(function(tr){
+//	if(tr.firstChildElement.firstChildElement.checked == true){
+//	tr.remove()
+//	}
+//})
+
+</script>
+</body>
+</html>

@@ -115,6 +115,7 @@ function globalFnc(){
 		let body = document.getElementById('tbody');
 		//이미 생성된 조회정보가 있으면 삭제
 		let childTr = document.querySelectorAll('#tbody>tr');
+		console.log(childTr);
 		childTr.forEach((elem) => {
 			//elem.remove(); //tr삭제
 			body.removeChild(elem) //부모의 요소가 지정되어 있어야 removeChild 메소드 (자식요소를 지움) 사용가능

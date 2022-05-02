@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="EUC-KR">
+  <title>promise.html</title>
+</head>
+
+<body>
+  <script>
+    // ajax => XMLHttpRequest();
+    //중첩코드 -> 1 -> 2 -> 3 : 
+    // callback1(
+    // callback2(
+    // callback3()
+    // );
+    // );
+    // callback1()
+    // callback2()
+    // callback3()
+    setTimeout(function(){
+      console.log('func1');
+      setTimeout(function(){
+      console.log('func2');
+        setTimeout(function(){
+          console.log('func3');
+
+        },3000)
+      },2000);
+    }, 1000);
+
+
+    //promise 객체
+    let val = 4;
+    let prom = new Promise(function (resolve, reject) {
+      setTimeout(function () { // 일정시간뒤 처리
+        if (val > 0) {
+          resolve('success');
+          val -= 2;
+        } else
+          reject('error');
+      }, 2000);
+
+    });
+
+    prom
+      .then(function (result) {
+        console.log(result);
+        return new Promise(function (resolve, reject) {
+          setTimeout(function () { // 일정시간뒤 처리
+            if (val > 0) {
+              resolve('success');
+              val -= 2;
+            } else
+              reject('error');
+          }, 2000);
+        });
+      })
+      .then(function(result){
+        console.log(result);
+        return new Promise(function(resolve, reject){
+          setTimeout(function () { // 일정시간뒤 처리
+            if (val > 0) {
+              resolve('success');
+              val -= 2;
+            } else
+              reject('error');
+          }, 2000);
+        })
+      })
+      .catch(function (reject) {
+        console.log(reject);
+      });
+  </script>
+</body>
+
+</html>
