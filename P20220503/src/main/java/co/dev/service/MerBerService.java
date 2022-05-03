@@ -15,4 +15,5 @@ public class MerBerService {
 		return dao.listMember();
 	}
 
+
 }
