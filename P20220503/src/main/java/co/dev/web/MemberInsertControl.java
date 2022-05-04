@@ -14,7 +14,6 @@ public class MemberInsertControl implements Control {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("입력처리하는 컨트롤입니다.");
 	
 	String id = request.getParameter("id");
 	String ps = request.getParameter("passwd");
@@ -27,12 +26,16 @@ public class MemberInsertControl implements Control {
 	vo.setPasswd(ps);
 	vo.setEmail(em);
 	
+	if(id.isEmpty()) {
+		request.setAttribute("error", "아이디입력");
+	}
+
 	MerBerService service = new MerBerService();
 	service.memberInsert(vo);
 	
 	request.setAttribute("id", id);
 	request.setAttribute("name", nm);
-
+	
 	
 	//Dispatcher 객체 forward.
 	request.getRequestDispatcher("memberResult/memberInsertOutput.jsp").forward(request, response); // memberInsertOutput 페이지에 공유
