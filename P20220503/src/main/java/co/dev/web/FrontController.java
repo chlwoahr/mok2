@@ -21,6 +21,12 @@ public class FrontController extends HttpServlet {
 		list.put("/memberList.do", new MemberListControl());
 		list.put("/memberSearch.do", new MemberSearchControl());
 		list.put("/memberDelete.do", new MemberDeleteControl());
+		
+		//json 관련 등록.
+		list.put("/memberListJson.do", new MemberListJson());
+		list.put("/memberInsertJson.do", new MemberInsertJson());
+		
+		
 	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
