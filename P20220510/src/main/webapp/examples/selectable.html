@@ -7,98 +7,79 @@
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
-  
-  
-  	let loadData = [];
-  	fetch('../FullCalendarServlet')
-  		.then(result => result.json())
-  		.then(json => {
-  		console.log(json);
-  		//loadData = json; //startDate -> start, endDate -> end
-  		json.forEach(schedule => {
-  			let obj = {title: schedule.title, start: schedule.startDate, end: schedule.endDate};
-  			loadData.push(obj); // title: ? , start : ? , end : ?
-  		})
-  		var calendarEl = document.getElementById('calendar');
-  		var calendar = new FullCalendar.Calendar(calendarEl, {
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      initialDate: '2022-05-12',
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectMirror: true,
-      
-      select: function(arg) {
-      console.log(arg);
-        var title = prompt('Event Title:');
-        if (title) {
-          //서블릿을 활용. db 저장.
-          fetch('../FullCalendarServlet',{
-          			method: 'post', //post방식시 headers지정
-          			headers: {'Content-Type': 'application/x-www-form-urlencoded'}, // key value형식으로 넘김
-          			body: `job=insert&title=${title}&start=${arg.startStr}&end=${arg.endStr}`
-          		})
-          	.then(result => {
-          		// 화면구현.          
-	            calendar.addEvent({
-		            title: title,
-		            start: arg.start,
-		            end: arg.end,
-		            allDay: arg.allDay
-		            
-          		});
-          		calendar.unselect()
-          	})
-          	.catch(error => {
-          	 console.log(error);
-          	 calendar.unselect()
-          	});
-                  
-        } //end of if(title)
-        
-      },
-      eventClick: function(arg) {
-      		//confirm 확인,취소를 뜨게하함
-        if (confirm('Are you sure you want to delete this event?')) {
-        	fetch('../FullCalendarServlet',{
-          			method: 'post', //post방식시 headers지정
-          			headers: {'Content-Type': 'application/x-www-form-urlencoded'}, // key value형식으로 넘김
-          			body: `job=delete&title=${"fc-event-title fc-sticky"}`
-          		})
-          		.then(result =>{
-          		//화면처리
-          		arg.event.remove({
-          		editable: true,
-      			dayMaxEvents: true, // allow "more" link when too many events
-      			
-          		})
-          		calendar.unselect()
-          		})
-          		.catch(error =>{
-          		calendar.unselect()
-          		
-          		});
-          		
-          		 	
-          
-        }
-      },
-      events:loadData
-    });
-			
-			calendar.render();
-  
-  		})
-  		.catch(error => 
-          		console.log(error));
-			    
-    	
-    
-		
-    });
+  	
+  	let loadData = []; //변수선언 [{},{}]
+		fetch('/FullCalendarServlet')
+				.then(result => result.json())
+				.then(json => {
+					console.log(json);
+					//loadData = json; //startDate -> start로 변경
+					json.forEach (schedule => {
+						let obj = {title: schedule.title, start: schedule.startDate, end: schedule.endDate};
+						loadData.push(obj); //{title:? start:?, end:?}
+					});
+					var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            initialDate: '2022-05-09',
+            navLinks: true, // can click day/week names to navigate views
+            selectable: true,
+            selectMirror: true,
+            select: function(arg) {
+            	console.log(arg);
+              var title = prompt('Event Title:');
+              if (title) {
+              	//서블릿을 활용 db저장
+              	fetch('../FullCalendarServlet', {
+              		method: 'post',
+              		headers: {'Content-Type': 'application/x-www-form-urlencoded'}, //post방식으로 전달할 때는 header정보를 같이 넘겨주어야함 key:value형식으로 넘겨준다
+              		body: `job=insert&title=${title}&start=${arg.startStr}&end=${arg.endStr}`
+              		})
+              			.then( result => {
+              				//화면 구현
+			                calendar.addEvent({
+			                  title: title,
+			                  start: arg.start,
+			                  end: arg.end,
+			                  allDay: arg.allDay
+			                });
+              				calendar.unselect()       			
+              			})
+              			.catch(error => {
+              				console.log(error);
+              				calendar.unselect()
+              			});
+              }//end of title
+            },
+            eventClick: function(arg) {
+              console.log(arg.event._def.title);
+              if (confirm('Are you sure you want to delete this event?')) {
+              	//서블릿을 활용 db저장
+              	fetch('../FullCalendarServlet', {
+              			method: 'post',
+              			headers: {'Content-Type': 'application/x-www-form-urlencoded'}, //post방식으로 전달할 때는 header정보를 같이 넘겨주어야함 key:value형식으로 넘겨준다
+              			body: `job=delete&title=${"fc-event-title fc-sticky"}`
+              		})
+              	//화면처리
+                	.then(result => arg.event.remove())
+                	.catch(error => {
+              				console.log(error);
+              				calendar.unselect()
+              			});
+              }
+            },
+            editable: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: loadData
+          });
+          calendar.render();
+				})
+				.catch(error => console.log(error));			  	
+  });
 
 </script>
 <style>
