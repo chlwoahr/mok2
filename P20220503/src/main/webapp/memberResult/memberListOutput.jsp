@@ -18,8 +18,8 @@
 	  <table border="1">
 	   <thead><tr><th>아이디</th><th>이름</th><th>이메일</th><th>비밀번호</th><th>이미지</th></tr></thead>
 	   <tbody>
-	     <c:forEach items="${all }" var="member">
-	     <tr><td>${member.id }</td><td>${member.name }</td><td>${member.email }</td><td>${member.passwd }</td>
+	     <c:forEach items="${all }" var="members">
+	     <tr><td>${members.id }</td><td>${members.name }</td><td>${members.email }</td><td>${members.passwd }</td>
 	     <td>
 	     <c:if test="${!empty member.profile }">
 	     <img width="50px" src="${pageContext.servletContext.contextPath }/upload/${member.profile }">
