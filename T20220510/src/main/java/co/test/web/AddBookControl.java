@@ -30,7 +30,7 @@ public class AddBookControl implements Controller {
 		service.addBook(vo);
 		
 		request.setAttribute("title", title);
-		request.setAttribute("author", author);
+		request.setAttribute("code", code);
 		
 		request.getRequestDispatcher("result/addOutput.jsp").forward(request, response);
 
